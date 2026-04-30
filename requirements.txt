@@ -1,0 +1,15 @@
+#Core data ingestion
+pandas
+pyarrow
+fastparquet
+
+#Machine learning And Processing
+scikit-learn
+numpy
+
+#Config Management
+hydra-core
+pydantic
+
+#Data Integration
+kaggle

@@ -1,0 +1,36 @@
+# ==========================================
+# COMS3007A Assignment 2 - Master Config
+# ==========================================
+
+# 1. Directory Paths
+paths:
+  raw: "data/raw"
+  processed: "data/processed"
+  # Utilizing Hydra's dynamic variable interpolation
+  train_data: "${paths.raw}/train_data.parquet"
+  train_labels: "${paths.raw}/train_labels.csv"
+  test_data: "${paths.raw}/test_data.parquet"
+
+# 2. Data Schema Constraints
+data:
+  time_steps: 100       # Rows per Sample ID
+  num_signals: 14       # Columns (Signal A through N)
+  num_classes: 6        # Target physical actions
+
+# 3. Local Validation & Reproducibility
+experiment:
+  random_seed: 42
+  cv_strategy: "StratifiedKFold"  # Alternatives: GroupKFold
+  cv_splits: 5
+  eval_metric: "macro_f1"
+
+# 4. Pipeline & Model Hyperparameters (Placeholders)
+preprocessing:
+  imputation_strategy: "forward_fill"  # To handle sensor dropout blocks
+  scaling_method: "standardize"
+  dimensionality_reduction: "PCA"
+
+model:
+  name: "RandomForest_Baseline"
+  n_estimators: 100
+  max_depth: 15
